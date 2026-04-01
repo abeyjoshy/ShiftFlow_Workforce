@@ -56,7 +56,7 @@ app.get('/api/health', (_req: Request, res: Response) => {
   return res.status(200).json({
     success: true,
     data: {
-      status: 'ok from git',
+      status: 'ok',
       service: 'shiftflow-backend',
     },
   });

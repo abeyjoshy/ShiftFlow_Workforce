@@ -131,7 +131,7 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
           _id: user._id.toString(),
           organizationId: user.organizationId.toString(),
           email: user.email,
-          role: user.role,
+          roleee: user.role,
           firstName: user.firstName,
           lastName: user.lastName,
           avatarUrl: user.avatarUrl,
