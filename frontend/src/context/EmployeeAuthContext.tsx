@@ -89,7 +89,7 @@ export function EmployeeAuthProvider({ children }: { children: React.ReactNode }
     setEmployee(null);
     // window.location.assign('/employee-login');
     navigate('/employee-login', { replace: true });
-  }, []);
+  }, [navigate]);
 
   const value = useMemo<EmployeeAuthContextValue>(
     () => ({ employee, token, isLoading, login, logout }),

@@ -81,7 +81,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(null);
     //window.location.assign('/login');
     navigate('/login', { replace: true });
-  }, []);
+  }, [navigate]);
 
   const updateUser = useCallback((patch: Partial<User>) => {
     setUser((prev) => (prev ? { ...prev, ...patch } : prev));
