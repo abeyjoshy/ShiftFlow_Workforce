@@ -1,9 +1,12 @@
-name: Deploy shiftflow to  AWS
+name: Deploy Backend
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   deploy:
@@ -25,9 +28,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
 
       - name: Install dependencies
         run: npm ci
+        working-directory: backend
 
       - name: Install Serverless
         run: npm install -g serverless
@@ -39,5 +45,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
 
-      - name: Deploy
+      - name: Deploy backend
         run: npm run deploy
+        working-directory: backend
