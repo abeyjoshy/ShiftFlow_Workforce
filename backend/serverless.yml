@@ -44,3 +44,7 @@ package:
     - '!.env'
     - '!README.md'
     - '!tsconfig.json'
+    - '!server.ts'
+    - '!app.ts'
+    - '!handler.ts'
+    
