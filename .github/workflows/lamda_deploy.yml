@@ -3,6 +3,9 @@ name: Deploy Backend
 on:
   push:
     branches: [main]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/**'
   workflow_dispatch:
 
 env:
@@ -12,7 +15,17 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: backend
+
     env:
+      AWS_REGION: eu-west-1
+
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
       ALLOWED_ORIGINS: ${{ secrets.ALLOWED_ORIGINS }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
@@ -33,18 +46,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: backend
 
       - name: Install Serverless
         run: npm install -g serverless
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v6
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-1
-
-      - name: Deploy backend
+      - name: Deploy
         run: npm run deploy
-        working-directory: backend
