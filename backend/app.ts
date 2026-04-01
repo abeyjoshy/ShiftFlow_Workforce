@@ -9,6 +9,8 @@ import { getEnv } from './src/config/env';
 import { errorHandler } from './src/middleware/errorHandler';
 import { apiRouter } from './src/routes';
 
+import mongoose from 'mongoose';
+
 const env = getEnv();
 
 export const app = express();
@@ -45,8 +47,33 @@ app.use(
 
 app.use('/api', apiRouter);
 
+// app.get('/api/health', (_req: Request, res: Response) => {
+//   return res.json({ success: true, data: { status: 'ok' } });
+// });
+
+// Basic health (fast, no dependencies)
 app.get('/api/health', (_req: Request, res: Response) => {
-  return res.json({ success: true, data: { status: 'ok' } });
+  return res.status(200).json({
+    success: true,
+    data: {
+      status: 'ok from git',
+      service: 'shiftflow-backend',
+    },
+  });
 });
+
+// DB-aware health (checks MongoDB connection)
+app.get('/api/health/db', (_req: Request, res: Response) => {
+  const dbConnected = mongoose.connection.readyState === 1;
+
+  return res.status(dbConnected ? 200 : 503).json({
+    success: dbConnected,
+    data: {
+      status: dbConnected ? 'ok' : 'degraded',
+      database: dbConnected ? 'connected' : 'disconnected',
+    },
+  });
+});
+
 
 app.use(errorHandler);
