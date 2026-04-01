@@ -46,7 +46,7 @@ app.use(
 app.use('/api', apiRouter);
 
 app.get('/api/health', (_req: Request, res: Response) => {
-  return res.json({ success: true, data: { status: 'ok from git' } });
+  return res.json({ success: true, data: { status: 'ok' } });
 });
 
 app.use(errorHandler);
