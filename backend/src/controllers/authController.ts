@@ -104,7 +104,7 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
 
     const user = await UserModel.findOne({ email: emailStr }).select('+passwordHash');
     if (!user || !user.isActive) {
-      res.status(401).json({ success: false, message: 'Invalid credentials' });
+      res.status(401).json({ success: false, message: 'Invalid credentials from CI/CD' });
       return;
     }
 
