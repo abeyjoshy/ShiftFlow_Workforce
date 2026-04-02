@@ -92,7 +92,7 @@ jobs:
           CI: false
           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
 
-  deploy-backend:
+  backend-cd:
     runs-on: ubuntu-latest
     needs: backend-ci
 
@@ -136,9 +136,9 @@ jobs:
       - name: Deploy backend
         run: npm run deploy
 
-  deploy-frontend:
+  frontend-cd:
     runs-on: ubuntu-latest
-    needs: [frontend-ci, deploy-backend]
+    needs: [frontend-ci, backend-cd]
 
     defaults:
       run:
