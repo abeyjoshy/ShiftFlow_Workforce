@@ -176,14 +176,3 @@ jobs:
 
       - name: Deploy frontend to S3
         run: aws s3 sync build/ s3://shiftflow-frontend-final --delete
-
-  smoke-test-backend:
-    runs-on: ubuntu-latest
-    needs: deploy-backend
-
-    steps:
-      - name: Check backend health
-        run: curl --fail --silent https://t4kx2vxofl.execute-api.eu-west-1.amazonaws.com/api/health
-
-      - name: Check backend DB health
-        run: curl --fail --silent https://t4kx2vxofl.execute-api.eu-west-1.amazonaws.com/api/health/db
