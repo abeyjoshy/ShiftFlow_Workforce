@@ -32,7 +32,7 @@ export function LoginPage() {
   return (
     <div className="authPage">
       <form className="authCard" onSubmit={onSubmit}>
-        <h1 className="authTitle">Welcome back</h1>
+        <h1 className="authTitle">Welcome back from CI/CD</h1>
         <p className="authSubtitle">Sign in to manage schedules, swaps, and your team.</p>
 
         <label className="formLabel" htmlFor="login-email">
