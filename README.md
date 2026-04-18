@@ -1,6 +1,6 @@
 # ShiftFlow Workforce
 
-ShiftFlow is a cloud-based workforce management system built to help organizations manage employees, schedules, shift swaps, notifications, monitoring, and time-off workflows. The application uses a modern full-stack architecture with a React + TypeScript frontend and a Node.js/Express backend deployed on AWS using a serverless model. 
+ShiftFlow is a cloud-based workforce management system built to help organizations manage employees, schedules, shift swaps, notifications, monitoring, and time-off workflows. The application uses a modern full-stack architecture with a React frontend and a Typescript + Node.js/Express backend deployed on AWS using a serverless model. 
 
 ## Overview
 
@@ -26,6 +26,7 @@ ShiftFlow is designed as a scalable workforce platform for handling day-to-day s
 - AWS Lambda
 - AWS HTTP API / API Gateway
 - Amazon S3
+- Amazon Cloudfront
 - GitHub Actions CI/CD
 - Serverless Framework
 
